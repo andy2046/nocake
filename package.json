@@ -1,7 +1,8 @@
 {
   "name": "nocake",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "javascript Stack Queue PriorityQueue",
+  "homepage": "https://github.com/andy2046/nocake",
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=3.8"
@@ -18,8 +19,12 @@
     "lint-watch": "esw -w src/ test/",
     "cover": "cross-env NODE_ENV=test nyc npm test"
   },
-  "author": "nocake",
+  "author": "andy*()",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andy2046/nocake.git"
+  },
   "dependencies": {
     "awilix": "~2.2.5",
     "awilix-koa": "~0.1.1",
