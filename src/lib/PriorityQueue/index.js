@@ -1,21 +1,57 @@
 const PriorityQueue = (function () {
 
+  const isPrimitive = (obj) => {
+    return obj !== Object(obj)
+  }
+
   class QueueElement {
-    constructor (element) {
+    constructor (element, priority) {
       this.element = element
+      this.priority = Number.isInteger(priority)
+        ? priority
+        : Number.isInteger(element) ? element : 0
+    }
+
+    equals (obj) {
+      if (isPrimitive(this.element) && isPrimitive(obj.element)) {
+        return this.element === obj.element
+          && this.priority == obj.priority 
+      } else {
+        // define toJSON() in element obj for customization
+        return JSON.stringify(this.element) === JSON.stringify(obj.element)
+          && this.priority == obj.priority
+      }
     }
   }
 
   const items = new WeakMap()
   const comp = Symbol('compareFunction')
   const defaultCompareFunc = (a, b) => {
-    if (a < b) {
-      return -1
-    }
-    if (a > b) {
+    if (a.priority < b.priority) {
       return 1
     }
+    if (a.priority > b.priority) {
+      return -1
+    }
     return 0
+  }
+  const lowerBound = (arr, val, comp) => {
+    let first = 0
+    let count = arr.length
+    
+    while (count > 0) {
+      const step = (count / 2) | 0
+      let it = first + step
+      
+      if (comp(arr[it], val) <= 0) {
+        first = ++it
+        count -= step + 1
+      } else {
+        count = step
+      }
+    }
+
+    return first
   }
 
   class PriorityQueue {
@@ -38,32 +74,30 @@ const PriorityQueue = (function () {
       }
 
       this[comp] = compareFunction
+
       if (iterable) {
         for (const item of iterable) {
-          this.enqueue(item)
+          this.enqueue(item.element, item.priority)
         }
       }
     }
 
-    enqueue (element) {
+    enqueue (element, priority) {
       if (element == null) {
-        throw new Error('element is required, enqueue(element)')
+        throw new Error('element is required, enqueue(element, priority)')
       }
 
-      let queueElement = element // new QueueElement(element)
+      let queueElement = new QueueElement(element, priority)
       let q = items.get(this)
-      let added = false
 
-      for (let i=0; i<q.length; i++) {
-        if (this[comp](queueElement, q[i]) < 0) {
-          q.splice(i,0,queueElement)
-          added = true
-          break
-        }
-      }
-      if (!added) {
+      if (q.length && q[q.length - 1].priority >= queueElement.priority) {
         q.push(queueElement)
+        return
       }
+
+      const index = lowerBound(q, queueElement, this[comp])
+      q.splice(index, 0, queueElement)
+
       items.set(this, q)
     }
 
@@ -82,7 +116,7 @@ const PriorityQueue = (function () {
     has (element) {
       const q = items.get(this)
       for (const item of q) {
-        if (element === item) {
+        if (item.equals(element)) {
           return true
         }
       }
@@ -118,12 +152,14 @@ const PriorityQueue = (function () {
     print () {
       const q = items.get(this)
       for (let i=0; i<q.length; i++) {
-        console.log(`${JSON.stringify(q[i])}`)
+        console.log(`${JSON.stringify(q[i].element)} - ${q[i].priority}`)
       }
     }
 
     toString () {
-      return items.get(this).toString()
+      let str = ''
+      items.get(this).forEach(i => str += JSON.stringify(i) + ',')
+      return str
     }
   }
   return PriorityQueue

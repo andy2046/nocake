@@ -15,19 +15,20 @@ s.enqueue(2);
 s.dequeue(); //=> 1
 
 let pq = new PriorityQueue((a, b) => {
-  if (a.val < b.val) {
-    return -1
-  }
-  if (a.val > b.val) {
+  if (a.priority < b.priority) {
     return 1
+  }
+  if (a.priority > b.priority) {
+    return -1
   }
   return 0
 });
-pq.enqueue({val: 3});
-pq.enqueue({val: 1});
-pq.enqueue({val: 2});
-pq.dequeue(); //=> {val: 1}
-pq.dequeue(); //=> {val: 2}
+// enqueue(element[, priority])
+pq.enqueue(1);
+pq.enqueue(3);
+pq.enqueue(2);
+pq.dequeue(); //=> {element: 3, priority: 3}
+pq.dequeue(); //=> {element: 2, priority: 2}
 ```
 
 ## Installation
