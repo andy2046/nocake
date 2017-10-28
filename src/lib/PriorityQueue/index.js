@@ -15,7 +15,7 @@ const PriorityQueue = (function () {
     equals (obj) {
       if (isPrimitive(this.element) && isPrimitive(obj.element)) {
         return this.element === obj.element
-          && this.priority == obj.priority 
+          && this.priority == obj.priority
       } else {
         // define toJSON() in element obj for customization
         return JSON.stringify(this.element) === JSON.stringify(obj.element)
@@ -61,7 +61,7 @@ const PriorityQueue = (function () {
       let [compareFunction, iterable] = args
 
       if (args.length >= 2 && typeof compareFunction !== 'function') {
-        throw new Error('no compareFunction defined, PriorityQueue(compareFunction, iterable)')
+        throw new TypeError('no compareFunction defined, PriorityQueue(compareFunction, iterable)')
       }
 
       if (args.length == 1 && typeof args[0] !== 'function') {
@@ -77,7 +77,11 @@ const PriorityQueue = (function () {
 
       if (iterable) {
         for (const item of iterable) {
-          this.enqueue(item.element, item.priority)
+          if (isPrimitive(item)) {
+            this.enqueue(item)
+          } else {
+            this.enqueue(item.element, item.priority)
+          }
         }
       }
     }
@@ -113,10 +117,21 @@ const PriorityQueue = (function () {
       return q[0]
     }
 
-    has (element) {
+    has (obj) {
+      if (obj == null) return false
+      let _obj
+
+      if (isPrimitive(obj)) {
+        _obj = new QueueElement(obj)
+      } else if (obj.element != null) {
+        _obj = new QueueElement(obj.element, obj.priority) 
+      } else {
+        return false
+      }
+
       const q = items.get(this)
       for (const item of q) {
-        if (item.equals(element)) {
+        if (item.equals(_obj)) {
           return true
         }
       }
@@ -140,7 +155,7 @@ const PriorityQueue = (function () {
       }
     }
 
-    size () {
+    get size () {
       const q = items.get(this)
       return q.length
     }

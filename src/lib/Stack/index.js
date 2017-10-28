@@ -56,7 +56,7 @@ const Stack = (function () {
       }
     }
 
-    size () {
+    get size () {
       const s = items.get(this)
       return s.length
     }

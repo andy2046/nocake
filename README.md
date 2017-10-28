@@ -3,7 +3,7 @@ nocake is a JavaScript (ES6/ES2015) collections library including **Stack**, **Q
 
 ## Examples
 ```js
-import {Stack, Queue, PriorityQueue} from 'nocake';
+import {Stack, Queue, PriorityQueue, PromiseQueue} from 'nocake';
 let s = new Stack();
 s.push(1);
 s.push(2);
@@ -29,6 +29,29 @@ pq.enqueue(3);
 pq.enqueue(2);
 pq.dequeue(); //=> {element: 3, priority: 3}
 pq.dequeue(); //=> {element: 2, priority: 2}
+
+const promisequeue = new PromiseQueue({concurrency: 1});
+
+const asyncTask = (time) => () => { return new Promise(resolve => {
+  setTimeout(resolve, time)
+})};
+
+promisequeue.add(asyncTask(1000), { priority: 1 }).then(() => {
+  console.log('async task 1000 Done');
+});
+
+promisequeue.add(asyncTask(2000), { priority: 2 }).then(() => {
+  console.log('async task 2000 Done');
+});
+
+promisequeue.add(asyncTask(3000), { priority: 3 }).then(() => {
+  console.log('async task 3000 Done');
+});
+
+// async task 1000 Done
+// async task 3000 Done
+// async task 2000 Done
+
 ```
 
 ## Installation
@@ -41,5 +64,5 @@ npm install --save nocake
 You can import one or multiple collections from `nocake`:
 
 ```js
-import {Stack, Queue, PriorityQueue} from 'nocake';
+import {Stack, Queue, PriorityQueue, PromiseQueue} from 'nocake';
 ```

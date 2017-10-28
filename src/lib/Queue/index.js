@@ -56,7 +56,7 @@ const Queue = (function () {
       }
     }
 
-    size () {
+    get size () {
       const q = items.get(this)
       return q.length
     }
