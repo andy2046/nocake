@@ -1,5 +1,5 @@
 # nocake
-nocake is a JavaScript (ES6/ES2015) collections library including **Stack**, **Queue**, and **PriorityQueue** data structures.
+nocake is a JavaScript (ES6/ES2015) collections library including **Stack**, **Queue**, **PriorityQueue** and **PromiseQueue** data structures.
 
 ## Examples
 ```js
