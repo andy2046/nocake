@@ -1,6 +1,6 @@
 {
   "name": "nocake",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "javascript Stack Queue PriorityQueue",
   "homepage": "https://github.com/andy2046/nocake",
   "engines": {
@@ -26,22 +26,7 @@
     "url": "https://github.com/andy2046/nocake.git"
   },
   "dependencies": {
-    "awilix": "~2.2.5",
-    "awilix-koa": "~0.1.1",
-    "babel-preset-stage-1": "~6.24.1",
-    "babel-register": "~6.24.1",
-    "bristol": "~0.3.3",
-    "glob": "~7.1.1",
-    "kcors": "2",
-    "koa": "~2.2.0",
-    "koa-bodyparser": "~4.2.0",
-    "koa-convert": "~1.2.0",
-    "koa-respond": "~1.0.1",
-    "koa-router": "~7.1.1",
-    "lodash": "~4.17.4",
-    "palin": "~2.1.1",
-    "source-map-support": "~0.4.14",
-    "yenv": "~1.0.6"
+    
   },
   "devDependencies": {
     "app-module-path": "~2.2.0",
@@ -67,7 +52,23 @@
     "nyc": "~10.2.0",
     "sinon": "~2.1.0",
     "sinon-chai": "~2.9.0",
-    "supertest": "~3.0.0"
+    "supertest": "~3.0.0",
+    "awilix": "~2.2.5",
+    "awilix-koa": "~0.1.1",
+    "babel-preset-stage-1": "~6.24.1",
+    "babel-register": "~6.24.1",
+    "bristol": "~0.3.3",
+    "glob": "~7.1.1",
+    "kcors": "2",
+    "koa": "~2.2.0",
+    "koa-bodyparser": "~4.2.0",
+    "koa-convert": "~1.2.0",
+    "koa-respond": "~1.0.1",
+    "koa-router": "~7.1.1",
+    "lodash": "~4.17.4",
+    "palin": "~2.1.1",
+    "source-map-support": "~0.4.14",
+    "yenv": "~1.0.6"
   },
   "directories": {
     "test": "test"
