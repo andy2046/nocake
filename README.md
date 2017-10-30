@@ -65,4 +65,6 @@ You can import one or multiple collections from `nocake`:
 
 ```js
 import {Stack, Queue, PriorityQueue, PromiseQueue} from 'nocake';
+// or
+const {Stack, Queue, PriorityQueue, PromiseQueue} = require('nocake');
 ```
