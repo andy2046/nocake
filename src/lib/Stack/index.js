@@ -77,4 +77,4 @@ const Stack = (function () {
   return Stack
 })()
 
-export default Stack
+module.exports = Stack

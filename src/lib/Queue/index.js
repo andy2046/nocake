@@ -76,4 +76,4 @@ const Queue = (function () {
   return Queue
 })()
 
-export default Queue
+module.exports = Queue

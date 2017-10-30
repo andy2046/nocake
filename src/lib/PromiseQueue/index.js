@@ -1,4 +1,4 @@
-import { default as PriorityQueue } from '../PriorityQueue'
+const PriorityQueue = require('../PriorityQueue')
 
 const PromiseQueue = (function () {
 
@@ -109,4 +109,4 @@ const PromiseQueue = (function () {
   return PromiseQueue
 })()
 
-export default PromiseQueue
+module.exports = PromiseQueue

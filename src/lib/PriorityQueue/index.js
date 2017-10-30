@@ -180,4 +180,4 @@ const PriorityQueue = (function () {
   return PriorityQueue
 })()
 
-export default PriorityQueue
+module.exports = PriorityQueue
