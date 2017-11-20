@@ -24,15 +24,15 @@ export default async function nocakeHandler (ctx, next) {
     priorityqueue.has(5)
     ctx.body = 'Array:' + anotherArr + '\nPriorityQueue:' + priorityqueue.toString()
   } else if (ctx.path === '/promisequeue') {
-    const promisequeue = new PromiseQueue({concurrency: 1});
+    const promisequeue = PromiseQueue.of({ concurrency: 1 });
     const asyncTask = (time) => () => { return new Promise(resolve => {
       setTimeout(resolve, time)
     })};
     promisequeue.add(asyncTask(1000), { priority: 1 }).then(() => {
       console.log('async task 1000 Done');
     });
-    promisequeue.add(asyncTask(2000), { priority: 2 }).then(() => {
-      console.log('async task 2000 Done');
+    promisequeue.addAll([asyncTask(2000), asyncTask(4000)], { priority: 2 }).then(() => {
+      console.log('async task 2000/4000 Done');
     });
     promisequeue.add(asyncTask(3000), { priority: 3 }).then(() => {
       console.log('async task 3000 Done');

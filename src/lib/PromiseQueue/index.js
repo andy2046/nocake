@@ -46,7 +46,9 @@ const PromiseQueue = (function () {
             val => {
               resolve(val)
               this._next()
-            },
+            }
+          )
+          .catch(
             err => {
               reject(err)
               this._next()
@@ -106,6 +108,16 @@ const PromiseQueue = (function () {
       return this._pendingCount
     }
   }
+
+  Object.defineProperty(PromiseQueue, 'of', {
+    value: function (opts) {
+      return new PromiseQueue(opts)
+    },
+    writable : false,
+    enumerable : true,
+    configurable : false
+  })
+
   return PromiseQueue
 })()
 

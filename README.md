@@ -31,7 +31,7 @@ pq.enqueue(2);
 pq.dequeue(); //=> {element: 3, priority: 3}
 pq.dequeue(); //=> {element: 2, priority: 2}
 
-const promisequeue = new PromiseQueue({concurrency: 1});
+const promisequeue = PromiseQueue.of({ concurrency: 1 });
 
 const asyncTask = (time) => () => { return new Promise(resolve => {
   setTimeout(resolve, time)
@@ -41,8 +41,8 @@ promisequeue.add(asyncTask(1000), { priority: 1 }).then(() => {
   console.log('async task 1000 Done');
 });
 
-promisequeue.add(asyncTask(2000), { priority: 2 }).then(() => {
-  console.log('async task 2000 Done');
+promisequeue.addAll([asyncTask(2000), asyncTask(4000)], { priority: 2 }).then(() => {
+  console.log('async task 2000/4000 Done');
 });
 
 promisequeue.add(asyncTask(3000), { priority: 3 }).then(() => {
@@ -51,7 +51,7 @@ promisequeue.add(asyncTask(3000), { priority: 3 }).then(() => {
 
 // async task 1000 Done
 // async task 3000 Done
-// async task 2000 Done
+// async task 2000/4000 Done
 
 ```
 

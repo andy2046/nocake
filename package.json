@@ -1,7 +1,7 @@
 {
   "name": "nocake",
-  "version": "0.3.1",
-  "description": "javascript Stack Queue PriorityQueue",
+  "version": "0.4.1",
+  "description": "javascript Stack Queue PriorityQueue LinkedList",
   "homepage": "https://github.com/andy2046/nocake",
   "engines": {
     "node": ">=8.0.0",
@@ -20,6 +20,15 @@
     "cover": "cross-env NODE_ENV=test nyc npm test"
   },
   "author": "andy*()",
+  "keywords": [
+    "javascript",
+    "data",
+    "structure",
+    "Stack",
+    "Queue",
+    "PriorityQueue",
+    "LinkedList"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
