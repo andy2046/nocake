@@ -1,9 +1,7 @@
 const Stack = (function () {
-
   const items = new WeakMap()
-  
-  class Stack {
 
+  class Stack {
     constructor (iterable) {
       items.set(this, [])
       if (iterable) {
@@ -26,7 +24,7 @@ const Stack = (function () {
 
     peek () {
       const s = items.get(this)
-      return s[s.length-1]
+      return s[s.length - 1]
     }
 
     has (element) {
@@ -40,7 +38,7 @@ const Stack = (function () {
     }
 
     isEmpty () {
-      return items.get(this).length == 0
+      return items.get(this).length === 0
     }
 
     forEach (callback, thisArg) {
@@ -49,7 +47,7 @@ const Stack = (function () {
       }
     }
 
-    *[Symbol.iterator]() {
+    * [Symbol.iterator] () {
       const s = items.get(this)
       for (let i = s.length - 1; i >= 0; i--) {
         yield s[i]

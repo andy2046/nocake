@@ -1,9 +1,7 @@
 const Queue = (function () {
-
   const items = new WeakMap()
 
   class Queue {
-
     constructor (iterable) {
       items.set(this, [])
       if (iterable) {
@@ -40,7 +38,7 @@ const Queue = (function () {
     }
 
     isEmpty () {
-      return items.get(this).length == 0
+      return items.get(this).length === 0
     }
 
     forEach (callback, thisArg) {
@@ -49,7 +47,7 @@ const Queue = (function () {
       }
     }
 
-    *[Symbol.iterator]() {
+    * [Symbol.iterator] () {
       const q = items.get(this)
       for (let i = 0; i < q.length; i++) {
         yield q[i]

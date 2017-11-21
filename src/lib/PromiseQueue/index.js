@@ -1,9 +1,7 @@
 const PriorityQueue = require('../PriorityQueue')
 
 const PromiseQueue = (function () {
-
   class PromiseQueue {
-
     constructor (opts) {
       const _opts = Object.assign({
         concurrency: Infinity,
@@ -14,7 +12,7 @@ const PromiseQueue = (function () {
         throw new TypeError('Expected concurrency to be a number >= 1')
       }
 
-      this.queue = new _opts.queueClass()
+      this.queue = _opts.queueClass.of ? _opts.queueClass.of() : new _opts.queueClass() // eslint-disable-line new-cap
       this._queueClass = _opts.queueClass
       this._pendingCount = 0
       this._concurrency = _opts.concurrency
@@ -113,9 +111,9 @@ const PromiseQueue = (function () {
     value: function (opts) {
       return new PromiseQueue(opts)
     },
-    writable : false,
-    enumerable : true,
-    configurable : false
+    writable: false,
+    enumerable: true,
+    configurable: false
   })
 
   return PromiseQueue

@@ -1,6 +1,6 @@
 {
   "name": "nocake",
-  "version": "0.4.1",
+  "version": "0.6.1",
   "description": "javascript Stack Queue PriorityQueue LinkedList",
   "homepage": "https://github.com/andy2046/nocake",
   "engines": {
@@ -9,15 +9,10 @@
   },
   "main": "src/nocake.js",
   "scripts": {
-    "start": "node dist/bin/server.js",
-    "build": "babel src -d dist -s",
-    "dev": "nodemon src/bin/server.js",
-    "debug-brk": "npm run debug -- --break",
-    "test": "mocha --require test/_helpers test/**/*.spec.js --compilers js:babel-register -R dot --timeout 5000",
-    "test-watch": "npm run test -- --watch",
-    "lint": "eslint src/ test/",
-    "lint-watch": "esw -w src/ test/",
-    "cover": "cross-env NODE_ENV=test nyc npm test"
+    "build":    "babel src -d dist -s",
+    "test":     "node ./test",
+    "lint":     "eslint src/",
+    "lint:fix": "eslint src/ --fix"
   },
   "author": "andy*()",
   "keywords": [
@@ -36,9 +31,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "app-module-path": "~2.2.0",
-    "awilix": "~2.2.5",
-    "awilix-koa": "~0.1.1",
     "babel-cli": "~6.24.1",
     "babel-eslint": "~7.2.3",
     "babel-plugin-istanbul": "~4.1.1",
@@ -49,9 +41,6 @@
     "babel-preset-env": "~1.4.0",
     "babel-preset-stage-1": "~6.24.1",
     "babel-register": "~6.24.1",
-    "bristol": "^0.3.3",
-    "chai": "~3.5.0",
-    "cross-env": "~4.0.0",
     "eslint": "~3.19.0",
     "eslint-config-standard": "~10.2.1",
     "eslint-plugin-import": "^2.2.0",
@@ -59,37 +48,9 @@
     "eslint-plugin-promise": "~3.5.0",
     "eslint-plugin-standard": "~3.0.1",
     "eslint-watch": "~3.1.0",
-    "glob": "~7.1.1",
-    "kcors": "2",
-    "koa": "~2.2.0",
-    "koa-bodyparser": "~4.2.0",
-    "koa-convert": "~1.2.0",
-    "koa-respond": "~1.0.1",
-    "koa-router": "~7.1.1",
-    "lodash": "~4.17.4",
-    "mocha": "~3.3.0",
-    "moment": "^2.17.1",
-    "nodemon": "~1.11.0",
-    "nyc": "~10.2.0",
-    "palin": "~2.1.1",
-    "sinon": "~2.1.0",
-    "sinon-chai": "~2.9.0",
-    "source-map-support": "~0.4.14",
-    "supertest": "~3.0.0",
-    "yenv": "~1.0.6"
+    "source-map-support": "~0.4.14"
   },
   "directories": {
     "test": "test"
-  },
-  "nyc": {
-    "sourceMap": false,
-    "instrument": false,
-    "reporter": [
-      "text",
-      "lcov"
-    ],
-    "include": [
-      "src/**/*.js"
-    ]
   }
 }

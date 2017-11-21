@@ -1,5 +1,4 @@
 const DoublyLinkedList = (function () {
-
   class Node {
     constructor (element) {
       this.element = element
@@ -13,7 +12,6 @@ const DoublyLinkedList = (function () {
   const tail = new WeakMap() // new
 
   class DoublyLinkedList {
-
     constructor () {
       length.set(this, 0)
       head.set(this, null)
@@ -21,9 +19,7 @@ const DoublyLinkedList = (function () {
     }
 
     append (element) {
-
-      let node = new Node(element),
-        current, _tail
+      let node = new Node(element), _tail
 
       if (this.getHead() === null) { // first node on list
         head.set(this, node)
@@ -43,17 +39,14 @@ const DoublyLinkedList = (function () {
     }
 
     insert (position, element) {
-
       // check for out-of-bounds values
       if (position >= 0 && position <= this.size()) {
-
         let node = new Node(element),
           current = this.getHead(),
           previous,
           index = 0
 
         if (position === 0) { // add on first position
-
           if (!this.getHead()) { // new
             head.set(this, node)
             tail.set(this, node)
@@ -62,7 +55,6 @@ const DoublyLinkedList = (function () {
             current.prev = node
             head.set(this, node)
           }
-
         } else if (position === this.size()) { // last item // new
           current = tail
           current.next = node
@@ -92,10 +84,8 @@ const DoublyLinkedList = (function () {
     }
 
     removeAt (position) {
-
-      //check for out-of-bounds values
+      // check for out-of-bounds values
       if (position > -1 && position < this.size()) {
-
         let _head = this.getHead(),
           _tail = this.getTail(),
           current = _head,
@@ -111,14 +101,11 @@ const DoublyLinkedList = (function () {
           } else {
             _head.prev = null
           }
-
         } else if (position === this.size() - 1) { // last item
           current = _tail
           _tail = current.prev
           _tail.next = null
-
         } else {
-
           while (index++ < position) {
             previous = current
             current = current.next
@@ -128,8 +115,8 @@ const DoublyLinkedList = (function () {
           current.next.prev = previous // new
         }
 
-        head.set(this,_head)
-        tail.set(this,_tail)
+        head.set(this, _head)
+        tail.set(this, _tail)
 
         // update size of list
         let l = this.size()
@@ -148,12 +135,11 @@ const DoublyLinkedList = (function () {
     }
 
     indexOf (element) {
-
       let current = this.getHead(),
         index = -1
 
       // check first item
-      if (element == current.element) {
+      if (element === current.element) {
         return 0
       }
 
@@ -161,7 +147,7 @@ const DoublyLinkedList = (function () {
 
       // check in the middle of the list
       while (current.next) {
-        if (element == current.element) {
+        if (element === current.element) {
           return index
         }
 
@@ -170,22 +156,22 @@ const DoublyLinkedList = (function () {
       }
 
       // check last item
-      if (element == current.element) {
+      if (element === current.element) {
         return index
       }
 
       return -1
     }
 
-    isEmpty() {
+    isEmpty () {
       return this.size() === 0
     }
 
-    size() {
+    size () {
       return length.get(this)
     }
 
-    toString() {
+    toString () {
       let current = this.getHead(),
         s = current ? current.element : ''
       while (current && current.next) {
@@ -195,7 +181,7 @@ const DoublyLinkedList = (function () {
       return s
     }
 
-    inverseToString() {
+    inverseToString () {
       let current = this.getTail(),
         s = current ? current.element : ''
       while (current && current.prev) {
@@ -205,19 +191,19 @@ const DoublyLinkedList = (function () {
       return s
     }
 
-    print() {
+    print () {
       console.log(this.toString())
     }
 
-    printInverse() {
+    printInverse () {
       console.log(this.inverseToString())
     }
 
-    getHead() {
+    getHead () {
       return head.get(this)
     }
 
-    getTail() {
+    getTail () {
       return tail.get(this)
     }
   }

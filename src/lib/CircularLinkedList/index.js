@@ -1,5 +1,4 @@
 const CircularLinkedList = (function () {
-
   class Node {
     constructor (element) {
       this.element = element
@@ -11,14 +10,12 @@ const CircularLinkedList = (function () {
   const head = new WeakMap()
 
   class CircularLinkedList {
-
     constructor () {
       length.set(this, 0)
       head.set(this, null)
     }
 
     append (element) {
-
       let node = new Node(element),
         current
 
@@ -44,30 +41,26 @@ const CircularLinkedList = (function () {
     }
 
     insert (position, element) {
-
       // check for out-of-bounds values
       if (position >= 0 && position <= this.size()) {
-
         let node = new Node(element),
           current = this.getHead(),
           previous,
           index = 0
 
         if (position === 0) { // add on first position
-
-          if(!this.getHead()) { // if no node  in list
+          if (!this.getHead()) { // if no node  in list
             head.set(this, node)
             node.next = this.getHead()
           } else {
             node.next = current
             // update last element
-            while(current.next !== this.getHead()) { // last element will be head instead of NULL
+            while (current.next !== this.getHead()) { // last element will be head instead of NULL
               current = current.next
             }
             head.set(this, node)
             current.next = this.getHead()
           }
-
         } else {
           while (index++ < position) {
             previous = current
@@ -91,23 +84,19 @@ const CircularLinkedList = (function () {
     removeAt (position) {
       // check for out-of-bounds values
       if (position > -1 && position < this.size()) {
-
         let current = this.getHead(),
           previous,
           index = 0
 
         // removing first item
         if (position === 0) {
-
           while (current.next !== this.getHead()) { // needs to update last element first
             current = current.next
           }
 
           head.set(this, this.getHead().next)
           current.next = this.getHead()
-
         } else { // no need to update last element for circular list
-
           while (index++ < position) {
             previous = current
             current = current.next
@@ -137,7 +126,7 @@ const CircularLinkedList = (function () {
         index = -1
 
       // check first item
-      if (element == current.element) {
+      if (element === current.element) {
         return 0
       }
 
@@ -145,8 +134,7 @@ const CircularLinkedList = (function () {
 
       // check in the middle of the list
       while (current.next !== this.getHead()) {
-
-        if (element == current.element) {
+        if (element === current.element) {
           return index
         }
 
@@ -155,26 +143,26 @@ const CircularLinkedList = (function () {
       }
 
       // check last item
-      if (element == current.element) {
+      if (element === current.element) {
         return index
       }
 
       return -1
     }
 
-    isEmpty() {
+    isEmpty () {
       return this.size() === 0
     }
 
-    size() {
+    size () {
       return length.get(this)
     }
 
-    getHead() {
+    getHead () {
       return head.get(this)
     }
 
-    toString() {
+    toString () {
       let current = this.getHead(),
         s = current.element
 
@@ -186,7 +174,7 @@ const CircularLinkedList = (function () {
       return s.toString()
     }
 
-    print() {
+    print () {
       console.log(this.toString())
     }
   }

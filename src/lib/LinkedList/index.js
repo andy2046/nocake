@@ -1,5 +1,4 @@
 const LinkedList = (function () {
-
   class Node {
     constructor (element) {
       this.element = element
@@ -11,14 +10,12 @@ const LinkedList = (function () {
   const head = new WeakMap()
 
   class LinkedList {
-
     constructor () {
       length.set(this, 0)
       head.set(this, null)
     }
 
     append (element) {
-
       let node = new Node(element),
         current
 
@@ -26,25 +23,23 @@ const LinkedList = (function () {
         head.set(this, node)
       } else {
         current = this.getHead()
-        //loop the list until find last item
+        // loop the list until find last item
         while (current.next) {
           current = current.next
         }
-        //get last item and assign next to added item to make the link
+        // get last item and assign next to added item to make the link
         current.next = node
       }
 
-      //update size of list
+      // update size of list
       let l = this.size()
       l++
       length.set(this, l)
     }
 
     insert (position, element) {
-
-      //check for out-of-bounds values
+      // check for out-of-bounds values
       if (position >= 0 && position <= this.size()) {
-
         let node = new Node(element),
           current = this.getHead(),
           previous,
@@ -74,10 +69,8 @@ const LinkedList = (function () {
     }
 
     removeAt (position) {
-
       // check for out-of-bounds values
       if (position > -1 && position < this.size()) {
-
         let current = this.getHead(),
           previous,
           index = 0
@@ -110,7 +103,6 @@ const LinkedList = (function () {
     }
 
     indexOf (element) {
-
       let current = this.getHead(),
         index = 0
 
@@ -125,20 +117,19 @@ const LinkedList = (function () {
       return -1
     }
 
-    isEmpty() {
+    isEmpty () {
       return this.size() === 0
     }
 
-    size() {
+    size () {
       return length.get(this)
     }
 
-    getHead() {
+    getHead () {
       return head.get(this)
     }
 
-    toString() {
-
+    toString () {
       let current = this.getHead(),
         string = ''
 
@@ -150,7 +141,7 @@ const LinkedList = (function () {
       return string
     }
 
-    print() {
+    print () {
       console.log(this.toString())
     }
   }

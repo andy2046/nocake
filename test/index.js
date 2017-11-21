@@ -1,9 +1,5 @@
-# nocake
-nocake is a JavaScript (ES6/ES2015) collections library including **Stack**, **Queue**, **PriorityQueue**, **PromiseQueue** and **LinkedList** data structures.
-
-## Examples
-```js
-import {Stack, Queue, PriorityQueue, PromiseQueue, LinkedList, DoublyLinkedList, CircularLinkedList} from 'nocake';
+const { Stack, Queue, PriorityQueue, PromiseQueue,
+  LinkedList, DoublyLinkedList, CircularLinkedList } = require('../src/nocake')
 
 let s = new Stack();
 s.push(1);
@@ -52,20 +48,3 @@ promisequeue.add(asyncTask(3000), { priority: 3 }).then(() => {
 // async task 1000 Done
 // async task 3000 Done
 // async task 2000/4000 Done
-
-```
-
-## Installation
-
-```
-npm install --save nocake
-```
-
-## Usage
-You can import one or multiple collections from `nocake`:
-
-```js
-import {Stack, Queue, PriorityQueue, PromiseQueue, LinkedList, DoublyLinkedList, CircularLinkedList} from 'nocake';
-// or
-const {Stack, Queue, PriorityQueue, PromiseQueue, LinkedList, DoublyLinkedList, CircularLinkedList} = require('nocake');
-```

@@ -1,5 +1,4 @@
 const PriorityQueue = (function () {
-
   const isPrimitive = (obj) => {
     return obj !== Object(obj)
   }
@@ -14,12 +13,12 @@ const PriorityQueue = (function () {
 
     equals (obj) {
       if (isPrimitive(this.element) && isPrimitive(obj.element)) {
-        return this.element === obj.element
-          && this.priority == obj.priority
+        return this.element === obj.element &&
+          this.priority === obj.priority
       } else {
         // define toJSON() in element obj for customization
-        return JSON.stringify(this.element) === JSON.stringify(obj.element)
-          && this.priority == obj.priority
+        return JSON.stringify(this.element) === JSON.stringify(obj.element) &&
+          this.priority === obj.priority
       }
     }
   }
@@ -38,11 +37,11 @@ const PriorityQueue = (function () {
   const lowerBound = (arr, val, comp) => {
     let first = 0
     let count = arr.length
-    
+
     while (count > 0) {
       const step = (count / 2) | 0
       let it = first + step
-      
+
       if (comp(arr[it], val) <= 0) {
         first = ++it
         count -= step + 1
@@ -55,7 +54,6 @@ const PriorityQueue = (function () {
   }
 
   class PriorityQueue {
-
     constructor (...args) {
       items.set(this, [])
       let [compareFunction, iterable] = args
@@ -64,12 +62,12 @@ const PriorityQueue = (function () {
         throw new TypeError('no compareFunction defined, PriorityQueue(compareFunction, iterable)')
       }
 
-      if (args.length == 1 && typeof args[0] !== 'function') {
+      if (args.length === 1 && typeof args[0] !== 'function') {
         iterable = args[0]
         compareFunction = defaultCompareFunc
       }
 
-      if (args.length == 0) {
+      if (args.length === 0) {
         compareFunction = defaultCompareFunc
       }
 
@@ -124,7 +122,7 @@ const PriorityQueue = (function () {
       if (isPrimitive(obj)) {
         _obj = new QueueElement(obj)
       } else if (obj.element != null) {
-        _obj = new QueueElement(obj.element, obj.priority) 
+        _obj = new QueueElement(obj.element, obj.priority)
       } else {
         return false
       }
@@ -139,7 +137,7 @@ const PriorityQueue = (function () {
     }
 
     isEmpty () {
-      return items.get(this).length == 0
+      return items.get(this).length === 0
     }
 
     forEach (callback, thisArg) {
@@ -148,7 +146,7 @@ const PriorityQueue = (function () {
       }
     }
 
-    *[Symbol.iterator]() {
+    * [Symbol.iterator] () {
       const q = items.get(this)
       for (let i = 0; i < q.length; i++) {
         yield q[i]
@@ -166,17 +164,27 @@ const PriorityQueue = (function () {
 
     print () {
       const q = items.get(this)
-      for (let i=0; i<q.length; i++) {
+      for (let i = 0; i < q.length; i++) {
         console.log(`${JSON.stringify(q[i].element)} - ${q[i].priority}`)
       }
     }
 
     toString () {
       let str = ''
-      items.get(this).forEach(i => str += JSON.stringify(i) + ',')
+      items.get(this).forEach(i => { str += JSON.stringify(i) + ',' })
       return str
     }
   }
+
+  Object.defineProperty(PriorityQueue, 'of', {
+    value: function (...args) {
+      return new PriorityQueue(...args)
+    },
+    writable: false,
+    enumerable: true,
+    configurable: false
+  })
+
   return PriorityQueue
 })()
 
