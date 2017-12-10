@@ -19,7 +19,8 @@ const DoublyLinkedList = (function () {
     }
 
     append (element) {
-      let node = new Node(element), _tail
+      let node = new Node(element)
+      let _tail
 
       if (this.getHead() === null) { // first node on list
         head.set(this, node)
@@ -41,10 +42,10 @@ const DoublyLinkedList = (function () {
     insert (position, element) {
       // check for out-of-bounds values
       if (position >= 0 && position <= this.size()) {
-        let node = new Node(element),
-          current = this.getHead(),
-          previous,
-          index = 0
+        let node = new Node(element)
+        let current = this.getHead()
+        let previous
+        let index = 0
 
         if (position === 0) { // add on first position
           if (!this.getHead()) { // new
@@ -86,11 +87,11 @@ const DoublyLinkedList = (function () {
     removeAt (position) {
       // check for out-of-bounds values
       if (position > -1 && position < this.size()) {
-        let _head = this.getHead(),
-          _tail = this.getTail(),
-          current = _head,
-          previous,
-          index = 0
+        let _head = this.getHead()
+        let _tail = this.getTail()
+        let current = _head
+        let previous
+        let index = 0
 
         // removing first item
         if (position === 0) {
@@ -135,8 +136,8 @@ const DoublyLinkedList = (function () {
     }
 
     indexOf (element) {
-      let current = this.getHead(),
-        index = -1
+      let current = this.getHead()
+      let index = -1
 
       // check first item
       if (element === current.element) {
@@ -172,8 +173,8 @@ const DoublyLinkedList = (function () {
     }
 
     toString () {
-      let current = this.getHead(),
-        s = current ? current.element : ''
+      let current = this.getHead()
+      let s = current ? current.element : ''
       while (current && current.next) {
         current = current.next
         s += ', ' + current.element
@@ -182,8 +183,8 @@ const DoublyLinkedList = (function () {
     }
 
     inverseToString () {
-      let current = this.getTail(),
-        s = current ? current.element : ''
+      let current = this.getTail()
+      let s = current ? current.element : ''
       while (current && current.prev) {
         current = current.prev
         s += ', ' + current.element

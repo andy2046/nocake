@@ -1,5 +1,5 @@
 const { Stack, Queue, PriorityQueue, PromiseQueue,
-  LinkedList, DoublyLinkedList, CircularLinkedList } = require('../src/nocake')
+  LinkedList, DoublyLinkedList, CircularLinkedList } = require('../dist/nocake')
 
 let s = new Stack();
 s.push(1);

@@ -16,8 +16,8 @@ const CircularLinkedList = (function () {
     }
 
     append (element) {
-      let node = new Node(element),
-        current
+      let node = new Node(element)
+      let current
 
       if (this.getHead() === null) { // first node on list
         head.set(this, node)
@@ -43,10 +43,10 @@ const CircularLinkedList = (function () {
     insert (position, element) {
       // check for out-of-bounds values
       if (position >= 0 && position <= this.size()) {
-        let node = new Node(element),
-          current = this.getHead(),
-          previous,
-          index = 0
+        let node = new Node(element)
+        let current = this.getHead()
+        let previous
+        let index = 0
 
         if (position === 0) { // add on first position
           if (!this.getHead()) { // if no node  in list
@@ -84,9 +84,9 @@ const CircularLinkedList = (function () {
     removeAt (position) {
       // check for out-of-bounds values
       if (position > -1 && position < this.size()) {
-        let current = this.getHead(),
-          previous,
-          index = 0
+        let current = this.getHead()
+        let previous
+        let index = 0
 
         // removing first item
         if (position === 0) {
@@ -122,8 +122,8 @@ const CircularLinkedList = (function () {
     }
 
     indexOf (element) {
-      let current = this.getHead(),
-        index = -1
+      let current = this.getHead()
+      let index = -1
 
       // check first item
       if (element === current.element) {
@@ -163,8 +163,8 @@ const CircularLinkedList = (function () {
     }
 
     toString () {
-      let current = this.getHead(),
-        s = current.element
+      let current = this.getHead()
+      let s = current.element
 
       while (current.next !== this.getHead()) {
         current = current.next
