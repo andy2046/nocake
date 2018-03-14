@@ -1,6 +1,6 @@
 {
   "name": "nocake",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "javascript Stack Queue PriorityQueue LinkedList",
   "homepage": "https://github.com/andy2046/nocake",
   "engines": {
@@ -49,7 +49,7 @@
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-standard": "3.0.1",
     "eslint-watch": "3.1.0",
-    "uglifyjs-webpack-plugin": "1.1.2",
+    "uglifyjs-webpack-plugin": "1.2.3",
     "webpack": "3.5.5"
   },
   "directories": {
